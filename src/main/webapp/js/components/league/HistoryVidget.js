@@ -13,7 +13,7 @@ export default class HistoryVidget extends Component {
                     <div>
                         <span>
                             {this.props.history.matches.map((match, index) =>
-                                <img src={ HistoryVidget.imagePath(match.result) } />
+                                <img key={index} src={ HistoryVidget.imagePath(match.result) } />
                             )}
                         </span>
                     </div>
