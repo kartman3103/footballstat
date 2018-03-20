@@ -3,8 +3,12 @@ jdk:
   - oraclejdk8
 script:
   mvn clean package -X
+
 notifications:
   email:
-    - pasha3103@bk.ru
-    - mistake.klg@gmail.com
-    - osakovich@gmail.com
+    recipients:
+      - pasha3103@bk.ru
+      - mistake.klg@gmail.com
+      - osakovich@gmail.com
+    on_success: always
+    on_failure: always
