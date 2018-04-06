@@ -1,6 +1,6 @@
 package footballstat.services
 
-import footballstat.model.football.*
+import model.football.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 import java.util.*

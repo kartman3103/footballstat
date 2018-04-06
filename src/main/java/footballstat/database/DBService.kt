@@ -3,8 +3,11 @@ package footballstat.database
 
 import footballstat.database.dao.DAO
 import footballstat.database.dao.entity.MongoTeam
-import footballstat.model.football.*
 import footballstat.services.SportData
+import model.football.League
+import model.football.LeagueInfo
+import model.football.Match
+import model.football.Player
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired

@@ -1,8 +1,8 @@
 package footballstat.services.providers
 
 
-import footballstat.model.Country
 import footballstat.services.DataItems
+import model.Country
 import org.springframework.stereotype.Component
 
 class CountryProvider

@@ -2,10 +2,11 @@ package footballstat.database
 
 
 import footballstat.database.dao.DAO
-import footballstat.model.football.League
 import footballstat.services.json.LeagueParser
+import model.football.League
 import org.codehaus.jackson.map.ObjectMapper
-import org.junit.*
+import org.junit.Assert
+import org.junit.Test
 import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value

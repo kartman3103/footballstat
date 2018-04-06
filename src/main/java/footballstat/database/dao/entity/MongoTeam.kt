@@ -1,6 +1,6 @@
 package footballstat.database.dao.entity
 
-import footballstat.model.football.Player
+import model.football.Player
 
 
 class MongoTeam {

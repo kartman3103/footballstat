@@ -2,9 +2,9 @@ package footballstat.services.providers
 
 import footballstat.config.business.FDOConfig
 import footballstat.database.dao.mongodb.MongoTeamDAO
-import footballstat.model.football.Player
 import footballstat.services.DataItems
 import footballstat.services.request.FDORequest
+import model.football.Player
 import org.codehaus.jackson.JsonNode
 import org.codehaus.jackson.map.ObjectMapper
 import org.springframework.beans.factory.annotation.Autowired

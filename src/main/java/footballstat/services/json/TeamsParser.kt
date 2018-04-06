@@ -1,7 +1,7 @@
 package footballstat.services.json
 
-import footballstat.model.football.Team
-import footballstat.model.football.TournamentStatistic
+import model.football.Team
+import model.football.TournamentStatistic
 import org.codehaus.jackson.JsonNode
 import java.util.*
 
