@@ -1,8 +1,8 @@
 package footballstat.services.json
 
-import footballstat.model.football.League
-import footballstat.model.football.LeagueInfo
-import footballstat.model.football.Match
+import model.football.League
+import model.football.LeagueInfo
+import model.football.Match
 
 interface LeagueParser
 {

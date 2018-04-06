@@ -2,12 +2,12 @@ package footballstat.services.providers
 
 import footballstat.config.business.FDOConfig
 import footballstat.database.dao.DAO
-import footballstat.model.football.League
-import footballstat.model.football.LeagueInfo
-import footballstat.model.football.Match
 import footballstat.services.DataItems
 import footballstat.services.json.LeagueParser
 import footballstat.services.request.RequestProvider
+import model.football.League
+import model.football.LeagueInfo
+import model.football.Match
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.cache.annotation.Cacheable
 import org.springframework.stereotype.Component

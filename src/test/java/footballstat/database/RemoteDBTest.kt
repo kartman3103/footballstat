@@ -2,8 +2,8 @@ package footballstat.database
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import footballstat.database.dao.DAO
-import footballstat.model.football.League
 import footballstat.services.json.LeagueParser
+import model.football.League
 import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith

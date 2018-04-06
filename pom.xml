@@ -25,7 +25,24 @@
         <version>1.5.3.RELEASE</version>
     </parent>
 
+    <repositories>
+        <repository>
+            <id>footballstat-api-mvn-repo</id>
+            <url>https://raw.github.com/kartman3103/footballstat-api/mvn-repo/</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
+
     <dependencies>
+        <dependency>
+            <groupId>footballstat</groupId>
+            <artifactId>footballstat-api</artifactId>
+            <version>1.0-RELEASE</version>
+        </dependency>
+
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>fluent-hc</artifactId>

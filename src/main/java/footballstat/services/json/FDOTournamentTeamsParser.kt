@@ -1,6 +1,6 @@
 package footballstat.services.json
 
-import footballstat.model.football.TournamentStatistic
+import model.football.TournamentStatistic
 import org.codehaus.jackson.JsonNode
 import org.springframework.stereotype.Component
 

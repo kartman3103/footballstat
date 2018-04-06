@@ -1,8 +1,8 @@
 package footballstat.services.json
 
-import footballstat.model.football.League
-import footballstat.model.football.LeagueInfo
-import footballstat.model.football.Match
+import model.football.League
+import model.football.LeagueInfo
+import model.football.Match
 import org.codehaus.jackson.JsonNode
 import org.codehaus.jackson.map.ObjectMapper
 import org.springframework.beans.factory.annotation.Autowired

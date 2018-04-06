@@ -1,6 +1,6 @@
 package footballstat.database.dao.entity
 
-import footballstat.model.football.Team
+import model.football.Team
 
 open class MongoLeague {
     var id: String? = null

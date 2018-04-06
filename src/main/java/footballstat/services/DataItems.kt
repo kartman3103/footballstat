@@ -1,10 +1,10 @@
 package footballstat.services
 
-import footballstat.model.Country
-import footballstat.model.football.League
-import footballstat.model.football.LeagueInfo
-import footballstat.model.football.Match
-import footballstat.model.football.Player
+import model.Country
+import model.football.League
+import model.football.LeagueInfo
+import model.football.Match
+import model.football.Player
 
 interface DataItems
 {
