@@ -32,7 +32,7 @@ class LeaguesProvider
             val url = with(config) { "$apiUrl/$apiVersion/$competitions/?season=$defaultSeason" }
 
             return json.availableLeagues(request.getResponse(url)).filter {
-                it -> config.availableLeagueIds.contains(it.Id)
+                it -> config.availableLeagueIds.contains(it.id)
             }
         }
 

@@ -37,12 +37,12 @@ open class LeagueDAOTest
     fun testInsertDeleteGetbyid()
     {
         val league = leagueParser.league(requestGetLeague)
-        val leagueInfo = leagueParser.availableLeagues(requestListLeagueInfo).filter { it.Name == league.Name }.first()
+        val leagueInfo = leagueParser.availableLeagues(requestListLeagueInfo).filter { it.name == league.Name }.first()
         with(league) {
-            id = leagueInfo.Id
+            id = leagueInfo.id
             Year = 2016
-            ShortName = leagueInfo.ShortName
-            ToursPlayed = leagueInfo.ToursPlayed
+            ShortName = leagueInfo.shortName
+            ToursPlayed = leagueInfo.toursPlayed
         }
         leagueDAO.insert(league)
 

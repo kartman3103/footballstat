@@ -54,38 +54,38 @@ open class DBService
     }
 
     private fun loadLeague(leagueInfo: LeagueInfo) {
-        logger.info("_______________ START LOAD LIAGUE ${leagueInfo.ShortName}")
+        logger.info("_______________ START LOAD LIAGUE ${leagueInfo.shortName}")
         var league : League? = null
         var matchDay = 1
         val teamIds : MutableSet<String> = HashSet<String>()
-        while (matchDay <= leagueInfo.ToursPlayed) {
-            league = getFilledLeague(getLeague(leagueInfo.Id, matchDay), leagueInfo)
+        while (matchDay <= leagueInfo.toursPlayed) {
+            league = getFilledLeague(getLeague(leagueInfo.id, matchDay), leagueInfo)
             teamIds.addAll(league.Teams!!.map() { it.id!! })
             leagueDAO.insert(league)
-            logger.info("_______________ success load league ${leagueInfo.ShortName} matchday: $matchDay")
+            logger.info("_______________ success load league ${leagueInfo.shortName} matchday: $matchDay")
             matchDay++
         }
         teamIds.forEach { saveTeamPlayers(it) }
-        logger.info("_______________ FINISH LOAD LIAGUE ${leagueInfo.ShortName}")
+        logger.info("_______________ FINISH LOAD LIAGUE ${leagueInfo.shortName}")
     }
 
     private fun loadMatches(leagueInfo: LeagueInfo) {
-        logger.info("_______________ START LOAD MATCHES FOR ${leagueInfo.ShortName}")
+        logger.info("_______________ START LOAD MATCHES FOR ${leagueInfo.shortName}")
         var matchDay = 1
-        while (matchDay <= leagueInfo.ToursPlayed) {
-            val matches : Set<Match> = getMatch(leagueInfo.Id, matchDay)
+        while (matchDay <= leagueInfo.toursPlayed) {
+            val matches : Set<Match> = getMatch(leagueInfo.id, matchDay)
             matchDAO.insertAll(matches)
-            logger.info("_______________ success load matches for league ${leagueInfo.ShortName} matchday: $matchDay")
+            logger.info("_______________ success load matches for league ${leagueInfo.shortName} matchday: $matchDay")
             matchDay++
         }
-        logger.info("_______________ FINISH MATCHES FOR ${leagueInfo.ShortName}")
+        logger.info("_______________ FINISH MATCHES FOR ${leagueInfo.shortName}")
     }
 
     private fun getFilledLeague(league : League, leagueInfo: LeagueInfo) : League{
         return with(league) {
-            ToursPlayed = leagueInfo.ToursPlayed
-            ShortName = leagueInfo.ShortName
-            Year = leagueInfo.Year
+            ToursPlayed = leagueInfo.toursPlayed
+            ShortName = leagueInfo.shortName
+            Year = leagueInfo.year
             this
         }
     }
