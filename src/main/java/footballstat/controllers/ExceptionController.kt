@@ -1,21 +1,22 @@
 package footballstat.controllers
 
 import org.slf4j.LoggerFactory
+import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
-import org.springframework.web.servlet.ModelAndView
+import org.springframework.web.bind.annotation.ResponseStatus
 import javax.servlet.http.HttpServletRequest
 
 
 @ControllerAdvice
 open class ExceptionController
 {
-    val logger = LoggerFactory.getLogger(this.javaClass)
+    private val logger = LoggerFactory.getLogger(this.javaClass)
 
     @ExceptionHandler
-    fun logException(request : HttpServletRequest, e : Exception) : ModelAndView
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    fun logException(request : HttpServletRequest, e : Exception)
     {
         logger.error("Handle exception from " + request.requestURL, e)
-        return ModelAndView("error")
     }
 }
