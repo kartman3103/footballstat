@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service
 @Service
 open class MatchDAO : DefaultMongoRepository<Match>() {
     @Autowired
-    lateinit var mongoRepository : MatchMongoRepository
+    lateinit var matchRepo : MatchRepo
 
     override fun getMongoRepository(): MongoRepository<Match, String> {
-        return mongoRepository
+        return matchRepo
     }
 }

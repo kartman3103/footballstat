@@ -18,21 +18,20 @@ import java.util.*
 
 @Component
 @ManagedResource
-open class DBService
-{
+open class DBService {
     private val logger : Logger = LoggerFactory.getLogger(this.javaClass)
 
     @Autowired
-    lateinit var sportDataProvider : SportData
+    private lateinit var sportDataProvider : SportData
 
     @Autowired
-    lateinit var leagueDAO : DAO<League>
+    private lateinit var leagueDAO : DAO<League>
 
     @Autowired
-    lateinit var matchDAO : DAO<Match>
+    private lateinit var matchDAO : DAO<Match>
 
     @Autowired
-    lateinit var teamMongoMongoRepository : DAO<MongoTeam>
+    private lateinit var teamMongoMongoRepository : DAO<MongoTeam>
 
     fun hasDBConnection() : Boolean {
         return true

@@ -8,15 +8,10 @@ import org.springframework.data.domain.Example
 import org.springframework.stereotype.Service
 
 
-/**
- * TODO Удалить и написать заново
- */
 @Service
 open class LeagueDAO : DAO<League> {
-
-
     @Autowired
-    lateinit var leagueMongoRepository : LeagueMongoRepository
+    lateinit var leagueRepo : LeagueRepo
 
     override fun getAll(): Collection<League> {
         return getByExample(with(League()) {
@@ -45,7 +40,7 @@ open class LeagueDAO : DAO<League> {
             teams = obj.Teams
             this
         }
-        leagueMongoRepository.insert(mongoLeague)
+        leagueRepo.insert(mongoLeague)
 
         return obj
     }
@@ -61,7 +56,7 @@ open class LeagueDAO : DAO<League> {
             this.id = id
             this
         }
-        leagueMongoRepository.delete(getMongoLeagueByExample(league))
+        leagueRepo.delete(getMongoLeagueByExample(league))
 
         return true;
     }
@@ -95,6 +90,6 @@ open class LeagueDAO : DAO<League> {
             this
         }
 
-        return leagueMongoRepository.findAll(Example.of(mongoLeague))
+        return leagueRepo.findAll(Example.of(mongoLeague))
     }
 }
