@@ -1,7 +1,7 @@
 package footballstat.services.providers
 
 import footballstat.config.business.FDOConfig
-import footballstat.database.dao.mongodb.MongoTeamDAO
+import footballstat.database.dao.mongodb.TeamRepo
 import footballstat.services.DataItems
 import footballstat.services.request.FDORequest
 import model.football.Player
@@ -56,11 +56,10 @@ class TeamsProvider
     open class InternalTeamProvider : DataItems.Teams
     {
         @Autowired
-        lateinit var teamSquadDAO : MongoTeamDAO
+        private lateinit var teamRepo : TeamRepo
 
-        override fun getTeamSquad(teamId: Int): Collection<Player>
-        {
-            return teamSquadDAO.getById(teamId.toString())?.Players!!
+        override fun getTeamSquad(teamId: Int): Collection<Player> {
+            return teamRepo.findOne(teamId.toString())?.Players!!
         }
 
     }

@@ -1,8 +1,7 @@
 package footballstat.database.dao
 
 
-interface DAO<T>
-{
+interface DAO<T> {
     fun getAll() : Collection<T>
     fun getById(id: String): T?
     fun insert(obj: T) : T?

@@ -15,6 +15,5 @@ open class MatchMongoRepoTest {
 
     @Test
     fun testContext() {
-        matchRepo.findAll()
     }
 }
