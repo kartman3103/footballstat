@@ -2,6 +2,7 @@ package footballstat.services.providers
 
 import footballstat.config.business.FDOConfig
 import footballstat.database.dao.DAO
+import footballstat.database.dao.mongodb.MatchRepo
 import footballstat.services.DataItems
 import footballstat.services.json.LeagueParser
 import footballstat.services.request.RequestProvider
@@ -10,6 +11,7 @@ import model.football.LeagueInfo
 import model.football.Match
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.cache.annotation.Cacheable
+import org.springframework.data.domain.Example
 import org.springframework.stereotype.Component
 import java.util.*
 
@@ -64,13 +66,12 @@ class LeaguesProvider
     }
 
     @Component
-    open class InternalLeaguesProvider : DataItems.Leagues
-    {
+    open class InternalLeaguesProvider : DataItems.Leagues {
         @Autowired
-        lateinit var leagueDAO : DAO<League>
+        private lateinit var leagueDAO : DAO<League>
 
         @Autowired
-        lateinit var matchDAO : DAO<Match>
+        private lateinit var matchRepo : MatchRepo
 
         @Cacheable(cacheNames = arrayOf("availableLeagues"))
         override fun getAvailableLeagues(): List<LeagueInfo>
@@ -89,39 +90,32 @@ class LeaguesProvider
         }
 
         @Cacheable(cacheNames = arrayOf("leagues"))
-        override fun getLeague(leagueId: String, matchDay: Int): League
-        {
-            return leagueDAO.getByExample(
-                    with(League())
-                    {
-                        this.id = leagueId
-                        this.MatchDay = matchDay
-                        this
-                    }
-            ).first()
+        override fun getLeague(leagueId: String, matchDay: Int): League {
+            val league = with(League()) {
+                this.id = leagueId
+                this.MatchDay = matchDay
+                this
+            }
+            return leagueDAO.getByExample(league).first()
         }
 
         @Cacheable(cacheNames = arrayOf("tourMatches"))
         override fun getMatches(leagueId: String, matchDay: Int): Set<Match> {
-            return HashSet(matchDAO.getByExample(
-                    with(Match())
-                    {
-                        this.leagueId = leagueId
-                        this.matchDay = matchDay
-                        this
-                    }
-            ))
+            val match = with(Match()) {
+                this.leagueId = leagueId
+                this.matchDay = matchDay
+                this
+            }
+            return HashSet(matchRepo.findAll(Example.of(match)))
         }
 
         @Cacheable(cacheNames = arrayOf("allMatches"))
         override fun getMatches(leagueId: String): Set<Match> {
-            return HashSet(matchDAO.getByExample(
-                    with(Match())
-                    {
-                        this.leagueId = leagueId
-                        this
-                    }
-            ))
+            val match = with(Match()) {
+                this.leagueId = leagueId
+                this
+            }
+            return HashSet(matchRepo.findAll(Example.of(match)))
         }
     }
 }

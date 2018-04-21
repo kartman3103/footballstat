@@ -3,6 +3,7 @@ package footballstat.database
 
 import footballstat.database.dao.DAO
 import footballstat.database.dao.entity.MongoTeam
+import footballstat.database.dao.mongodb.MatchRepo
 import footballstat.services.SportData
 import model.football.League
 import model.football.LeagueInfo
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.jmx.export.annotation.ManagedOperation
 import org.springframework.jmx.export.annotation.ManagedResource
 import org.springframework.stereotype.Component
+import org.springframework.stereotype.Repository
 import java.util.*
 
 @Component
@@ -28,14 +30,10 @@ open class DBService {
     private lateinit var leagueDAO : DAO<League>
 
     @Autowired
-    private lateinit var matchDAO : DAO<Match>
+    private lateinit var matchRepo : MatchRepo
 
     @Autowired
-    private lateinit var teamMongoMongoRepository : DAO<MongoTeam>
-
-    fun hasDBConnection() : Boolean {
-        return true
-    }
+    private lateinit var teamRepo : DAO<MongoTeam>
 
     @ManagedOperation(description = "init database from footbal-data-org")
     fun initDB() {
@@ -73,7 +71,7 @@ open class DBService {
         var matchDay = 1
         while (matchDay <= leagueInfo.toursPlayed) {
             val matches : Set<Match> = getMatch(leagueInfo.id, matchDay)
-            matchDAO.insertAll(matches)
+            matchRepo.insert(matches)
             logger.info("_______________ success load matches for league ${leagueInfo.shortName} matchday: $matchDay")
             matchDay++
         }
@@ -90,7 +88,7 @@ open class DBService {
     }
 
     private fun saveTeamPlayers(teamId: String) {
-        teamMongoMongoRepository.insert(with(MongoTeam()) {
+        teamRepo.insert(with(MongoTeam()) {
             id = teamId
             Players = getTeamSquad(teamId.toInt())
             this})
