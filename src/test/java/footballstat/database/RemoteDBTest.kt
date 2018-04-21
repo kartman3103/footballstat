@@ -35,7 +35,7 @@ class RemoteDBTest {
     fun testInsertDeleteGetbyid()
     {
         val league = leagueParser.league(requestGetLeague)
-        val leagueInfo = leagueParser.availableLeagues(requestListLeagueInfo).filter { it.name == league.Name }.first()
+        val leagueInfo = leagueParser.availableLeagues(requestListLeagueInfo).first { it.name == league.Name }
         with(league) {
             id = leagueInfo.id
             Year = 2016
@@ -57,6 +57,5 @@ class RemoteDBTest {
             leagueDAO.delete(it)
             Assert.assertNull(leagueDAO.getById(it))
         }
-
     }
 }

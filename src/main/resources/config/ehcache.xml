@@ -6,6 +6,4 @@
     <cache name="leagues" maxElementsInMemory="1000" timeToIdleSeconds="3600"/>
     <cache name="tourMatches" maxElementsInMemory="1000" timeToIdleSeconds="3600"/>
     <cache name="allMatches" maxElementsInMemory="1000" timeToIdleSeconds="3600"/>
-
-
 </ehcache>
