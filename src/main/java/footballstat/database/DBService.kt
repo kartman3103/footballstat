@@ -4,6 +4,7 @@ package footballstat.database
 import footballstat.database.dao.DAO
 import footballstat.database.dao.entity.MongoTeam
 import footballstat.database.dao.mongodb.MatchRepo
+import footballstat.database.dao.mongodb.TeamRepo
 import footballstat.services.SportData
 import model.football.League
 import model.football.LeagueInfo
@@ -15,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.jmx.export.annotation.ManagedOperation
 import org.springframework.jmx.export.annotation.ManagedResource
 import org.springframework.stereotype.Component
-import org.springframework.stereotype.Repository
 import java.util.*
 
 @Component
@@ -33,7 +33,7 @@ open class DBService {
     private lateinit var matchRepo : MatchRepo
 
     @Autowired
-    private lateinit var teamRepo : DAO<MongoTeam>
+    private lateinit var teamRepo : TeamRepo
 
     @ManagedOperation(description = "init database from footbal-data-org")
     fun initDB() {
