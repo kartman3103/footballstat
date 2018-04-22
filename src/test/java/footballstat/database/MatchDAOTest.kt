@@ -1,7 +1,7 @@
 package footballstat.database
 
 
-import footballstat.database.dao.DAO
+import footballstat.database.dao.mongodb.MatchRepo
 import footballstat.services.json.LeagueParser
 import model.football.Match
 import org.codehaus.jackson.map.ObjectMapper
@@ -11,6 +11,7 @@ import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.data.domain.Example
 import org.springframework.test.context.TestPropertySource
 import org.springframework.test.context.junit4.SpringRunner
 
@@ -20,10 +21,10 @@ import org.springframework.test.context.junit4.SpringRunner
 open class MatchDAOTest
 {
     @Autowired
-    lateinit var matchDAO : DAO<Match>
+    private lateinit var matchRepo : MatchRepo
 
     @Autowired
-    lateinit var leagueParser : LeagueParser
+    private lateinit var leagueParser : LeagueParser
 
     @Value("\${matches}")
     private val matchesFDO: String = ""
@@ -35,15 +36,15 @@ open class MatchDAOTest
     {
         val matches : List<Match> = leagueParser.matches(matchesFDO)
         matches.forEach { it.leagueId = "test" }
-        matchDAO.insertAll(matches)
+        matchRepo.insert(matches)
 
         val exampleMatch = Match()
         exampleMatch.leagueId = "test"
         exampleMatch.matchDay = 38
 
-        val searchResult = matchDAO.getByExample(exampleMatch)
+        val searchResult = matchRepo.findAll(Example.of(exampleMatch))
         Assert.assertNotNull(searchResult)
         Assert.assertTrue(searchResult.size == matches.size)
-        searchResult.forEach { matchDAO.delete(it.id!!) }
+        searchResult.forEach { matchRepo.delete(it.id!!) }
     }
 }
