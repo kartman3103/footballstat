@@ -18,7 +18,7 @@ import org.springframework.test.context.junit4.SpringRunner
 @RunWith(SpringRunner::class)
 @SpringBootTest
 @TestPropertySource(locations= arrayOf("classpath:config/testdata/match-dao-test.properties"))
-open class MatchDAOTest
+open class MatchRepoTest
 {
     @Autowired
     private lateinit var matchRepo : MatchRepo
@@ -28,8 +28,6 @@ open class MatchDAOTest
 
     @Value("\${matches}")
     private val matchesFDO: String = ""
-
-    private var objectMapper : ObjectMapper = ObjectMapper()
 
     @Test
     fun testInsertDeleteGetbyid()
